@@ -1,0 +1,22 @@
+<div class="container mt-5">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Bandera</th>
+      <th>Nombre</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let pais of paises">
+      <td>{{ pais.id }}</td>
+      <td><img [src]="pais.bandera" alt="{{ pais.nombre }}" class="img-thumbnail" style="max-width: 50px;"></td>
+      <td>{{ pais.nombre }}</td>
+      <td>
+        <button class="btn btn-primary" (click)="elegirPais(pais.nombre)">Seleccionar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
