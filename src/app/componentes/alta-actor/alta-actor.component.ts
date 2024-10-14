@@ -77,7 +77,6 @@ export class AltaActorComponent implements OnInit {
       return;
     }
 
-
     const actor = new Actor(
       this.form.value.nombre,
       this.form.value.apellido,

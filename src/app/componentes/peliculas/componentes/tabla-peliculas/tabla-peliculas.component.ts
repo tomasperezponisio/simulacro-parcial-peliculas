@@ -16,7 +16,7 @@ export class TablaPeliculasComponent {
 
   peliculas: Pelicula[] = [
     {
-      id: 1,
+      // id: 1,
       nombre: 'The Shining',
       tipo: 'terror',
       fechaEstreno: new Date('1980-05-23'),
@@ -25,7 +25,7 @@ export class TablaPeliculasComponent {
       protagonista: 'Jack Nicholson'
     },
     {
-      id: 2,
+      // id: 2,
       nombre: 'Superbad',
       tipo: 'comedia',
       fechaEstreno: new Date('2007-08-17'),
@@ -34,7 +34,7 @@ export class TablaPeliculasComponent {
       protagonista: 'Jonah Hill'
     },
     {
-      id: 3,
+      // id: 3,
       nombre: 'Titanic',
       tipo: 'amor',
       fechaEstreno: new Date('1997-12-19'),
@@ -43,7 +43,7 @@ export class TablaPeliculasComponent {
       protagonista: 'Leonardo DiCaprio'
     },
     {
-      id: 4,
+      // id: 4,
       nombre: 'The Matrix',
       tipo: 'otros',
       fechaEstreno: new Date('1999-03-31'),

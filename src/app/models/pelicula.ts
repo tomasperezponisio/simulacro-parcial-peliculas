@@ -1,5 +1,5 @@
 export class Pelicula {
-  id: number;
+  // id: number;
   nombre: string;
   tipo: 'terror' | 'comedia' | 'amor' | 'otros';
   fechaEstreno: Date
@@ -8,7 +8,7 @@ export class Pelicula {
   protagonista: any;
 
   constructor(
-    id: number,
+    // id: number,
     nombre: string,
     tipo: 'terror' | 'comedia' | 'amor' | 'otros',
     fechaEstreno: Date,
@@ -16,7 +16,7 @@ export class Pelicula {
     imagen: string,
     protagonista: any
   ) {
-    this.id = id;
+    // this.id = id;
     this.nombre = nombre;
     this.tipo = tipo;
     this.fechaEstreno = fechaEstreno;

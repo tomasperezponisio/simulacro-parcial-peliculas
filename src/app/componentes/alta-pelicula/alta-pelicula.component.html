@@ -1,1 +1,108 @@
-<p>alta-pelicula works!</p>
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <h2>Alta Película</h2>
+      <p class="lead">Acá se dan de alta las películas.</p>
+    </div>
+
+    <div class="row g-5">
+      <div class="col-md-5 col-lg-4 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-primary">Seleccionar protagonista</span>
+        </h4>
+
+        <div class="scrollable-table">
+          <app-tabla-actores (actorSeleccionado)="alSeleccionarUnActor($event)"></app-tabla-actores>
+          <!--          <app-tabla-paises (paisSeleccionado)="alSeleccionarUnPais($event)"></app-tabla-paises>-->
+        </div>
+
+      </div>
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Formulario de alta de película</h4>
+        <form [formGroup]="form" (ngSubmit)="altaPelicula()" class="needs-validation">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" placeholder="" formControlName="nombre">
+
+              <ng-container *ngIf="nombre?.hasError('pattern')">
+                <small class="text-danger">Sólo debe contener solo letras</small>
+              </ng-container>
+
+              <ng-container *ngIf="nombre?.hasError('required')">
+                <small class="text-danger">Este campo es obligatorio</small>
+              </ng-container>
+
+            </div>
+
+            <div class="col-sm-6">
+              <label for="tipo" class="form-label">Tipo</label>
+              <select class="form-control" id="tipo" formControlName="tipo">
+                <option *ngFor="let tipo of tipoOpciones" [value]="tipo">{{ tipo }}</option>
+              </select>
+
+<!--              <ng-container *ngIf="tipo?.hasError('required')">-->
+<!--                <small class="text-danger">Este campo es obligatorio</small>-->
+<!--              </ng-container>-->
+
+            </div>
+
+            <div class="col-sm-6">
+              <label for="fechaEstreno" class="form-label">Fecha de Estreno</label>
+              <mat-form-field appearance="fill">
+<!--                <mat-label>Fecha de Estreno</mat-label>-->
+                <input matInput [matDatepicker]="picker" id="fechaEstreno" formControlName="fechaEstreno">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+<!--              <ng-container *ngIf="fechaEstreno?.hasError('required')">-->
+<!--                <small class="text-danger">Este campo es obligatorio</small>-->
+<!--              </ng-container>-->
+
+            </div>
+
+            <div class="col-sm-6">
+              <label for="cantidadPublico" class="form-label">Cantidad de Público</label>
+              <input type="number" class="form-control" id="cantidadPublico" placeholder=""
+                     formControlName="cantidadPublico">
+
+              <ng-container *ngIf="cantidadPublico?.hasError('min')">
+                <small class="text-danger">Debe ser mayor que 0</small>
+              </ng-container>
+
+              <ng-container *ngIf="cantidadPublico?.hasError('required') && cantidadPublico?.touched">
+                <small class="text-danger">Este campo es obligatorio</small>
+              </ng-container>
+
+            </div>
+
+            <div class="col-sm-6">
+              <label for="imagen" class="form-label">Foto de la Película</label>
+              <input type="text" class="form-control" id="imagen" formControlName="imagen" placeholder="">
+
+              <ng-container *ngIf="imagen?.hasError('required') && imagen?.touched">
+                <small class="text-danger">Este campo es obligatorio</small>
+              </ng-container>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="protagonista" class="form-label">Protagonista</label>
+              <input type="text" disabled class="form-control" id="protagonista" [value]="protagonista" placeholder="">
+            </div>
+
+          </div>
+
+          <hr class="my-4">
+
+<!--          <button type="submit" class="w-100 btn btn-primary btn-lg" [disabled]="form.invalid">Alta Película</button>-->
+          <button type="submit" class="w-100 btn btn-primary btn-lg">Alta Película</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+
