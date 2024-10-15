@@ -21,6 +21,7 @@
         <h4 class="mb-3">Formulario de alta de película</h4>
         <form [formGroup]="form" (ngSubmit)="altaPelicula()" class="needs-validation">
           <div class="row g-3">
+
             <div class="col-sm-6">
               <label for="nombre" class="form-label">Nombre</label>
               <input type="text" class="form-control" id="nombre" placeholder="" formControlName="nombre">
@@ -29,7 +30,7 @@
                 <small class="text-danger">Sólo debe contener solo letras</small>
               </ng-container>
 
-              <ng-container *ngIf="nombre?.hasError('required')">
+              <ng-container *ngIf="nombre?.hasError('required') && nombre?.touched">
                 <small class="text-danger">Este campo es obligatorio</small>
               </ng-container>
 
@@ -37,29 +38,30 @@
 
             <div class="col-sm-6">
               <label for="tipo" class="form-label">Tipo</label>
-              <select class="form-control" id="tipo" formControlName="tipo">
+              <select class="form-select" id="tipo" formControlName="tipo">
                 <option *ngFor="let tipo of tipoOpciones" [value]="tipo">{{ tipo }}</option>
               </select>
 
-<!--              <ng-container *ngIf="tipo?.hasError('required')">-->
-<!--                <small class="text-danger">Este campo es obligatorio</small>-->
-<!--              </ng-container>-->
+              <ng-container *ngIf="tipo?.hasError('required') && tipo?.touched">
+                <small class="text-danger">Este campo es obligatorio</small>
+              </ng-container>
 
             </div>
 
             <div class="col-sm-6">
               <label for="fechaEstreno" class="form-label">Fecha de Estreno</label>
               <mat-form-field appearance="fill">
-<!--                <mat-label>Fecha de Estreno</mat-label>-->
                 <input matInput [matDatepicker]="picker" id="fechaEstreno" formControlName="fechaEstreno">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
 
-<!--              <ng-container *ngIf="fechaEstreno?.hasError('required')">-->
-<!--                <small class="text-danger">Este campo es obligatorio</small>-->
-<!--              </ng-container>-->
+              <ng-container *ngIf="fechaEstreno?.hasError('required') && fechaEstreno?.touched">
+                <p>
+                  <small class="text-danger">Este campo es obligatorio</small>
+                </p>
+              </ng-container>
 
             </div>
 
@@ -97,7 +99,6 @@
           <hr class="my-4">
 
           <button type="submit" class="w-100 btn btn-primary btn-lg" [disabled]="form.invalid">Alta Película</button>
-<!--          <button type="submit" class="w-100 btn btn-primary btn-lg">Alta Película</button>-->
         </form>
       </div>
     </div>

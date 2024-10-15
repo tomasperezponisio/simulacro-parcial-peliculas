@@ -3,7 +3,7 @@
   <ul>
     <li><strong>Tipo:</strong> {{ pelicula.tipo }}</li>
     <li><strong>Cantidad de Publico:</strong> {{ pelicula.cantidadPublico }}</li>
-    <li><strong>Protagonista:</strong> {{ pelicula.protagonista }}</li>
+    <li><strong>Protagonista:</strong> {{ pelicula.protagonista.nombre }} {{ pelicula.protagonista.apellido  }}</li>
     <li><strong>Fecha de Estreno:</strong> {{ formattedDate | date: 'dd/MM/yyyy' }}</li>
   </ul>
   <img [src]="pelicula.imagen" alt="{{ pelicula.nombre }}" class="img-thumbnail" style="max-width: 200px;">

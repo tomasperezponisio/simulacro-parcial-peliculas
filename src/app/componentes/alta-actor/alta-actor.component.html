@@ -28,7 +28,7 @@
                 <small class="text-danger">Sólo debe contener solo letras</small>
               </ng-container>
 
-              <ng-container *ngIf="nombre?.hasError('required')">
+              <ng-container *ngIf="nombre?.hasError('required') && nombre?.touched">
                 <small class="text-danger">Este campo es obligatorio</small>
               </ng-container>
 
@@ -42,7 +42,7 @@
                 <small class="text-danger">Sólo debe contener solo letras</small>
               </ng-container>
 
-              <ng-container *ngIf="nombre?.hasError('required')">
+              <ng-container *ngIf="nombre?.hasError('required') && apellido?.touched">
                 <small class="text-danger">Este campo es obligatorio</small>
               </ng-container>
 
@@ -56,7 +56,7 @@
                 <small class="text-danger">Debe contener exactamente 8 dígitos numéricos</small>
               </ng-container>
 
-              <ng-container *ngIf="documento?.hasError('required')">
+              <ng-container *ngIf="documento?.hasError('required') && documento?.touched">
                 <small class="text-danger">Este campo es obligatorio</small>
               </ng-container>
 
