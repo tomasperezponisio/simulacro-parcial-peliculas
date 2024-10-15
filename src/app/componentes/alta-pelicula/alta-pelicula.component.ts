@@ -66,7 +66,6 @@ export class AltaPeliculaComponent implements OnInit {
         Validators.required
       ]),
       imagen: new FormControl("", [
-        Validators.pattern('^[0-9]{8}$'),
         Validators.required
       ]),
       protagonista: new FormControl("", [
@@ -102,9 +101,16 @@ export class AltaPeliculaComponent implements OnInit {
   }
 
   altaPelicula(): void {
-    // if (this.form.invalid) {
-    //   return;
-    // }
+     if (this.form.invalid) {
+       console.log('Form is invalid.');
+       Object.keys(this.form.controls).forEach(key => {
+         const controlErrors = this.form.get(key)?.errors;
+         if (controlErrors != null) {
+           console.log(`Key: ${key}, Errors: `, controlErrors);
+         }
+       });
+       return;
+     }
 
     console.log('Alta pelicula');
 
