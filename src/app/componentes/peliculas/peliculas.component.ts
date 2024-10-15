@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TablaPeliculasComponent} from "./componentes/tabla-peliculas/tabla-peliculas.component";
 import {DetallePeliculasComponent} from "./componentes/detalle-peliculas/detalle-peliculas.component";
 import {Pelicula} from "../../models/pelicula";

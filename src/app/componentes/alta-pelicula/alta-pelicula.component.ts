@@ -40,7 +40,8 @@ import Swal from "sweetalert2";
 })
 export class AltaPeliculaComponent implements OnInit {
   form!: FormGroup;
-  protagonista: string = '';
+  nombreCompleto: string = '';
+  actorSeleccionado!: Actor;
   tipoOpciones = ['terror', 'comedia', 'amor', 'otros'];
 
   constructor(
@@ -68,7 +69,7 @@ export class AltaPeliculaComponent implements OnInit {
       imagen: new FormControl("", [
         Validators.required
       ]),
-      protagonista: new FormControl("", [
+      nombreCompleto: new FormControl("", [
         Validators.required
       ]),
     });
@@ -96,8 +97,9 @@ export class AltaPeliculaComponent implements OnInit {
 
   alSeleccionarUnActor(actor: Actor): void {
     let nombreCompleto = actor.nombre + ' ' + actor.apellido;
-    this.protagonista = nombreCompleto;
-    this.form.patchValue({protagonista: nombreCompleto});
+    this.nombreCompleto = nombreCompleto;
+    this.form.patchValue({nombreCompleto: nombreCompleto});
+    this.actorSeleccionado = actor;
   }
 
   altaPelicula(): void {
@@ -121,20 +123,20 @@ export class AltaPeliculaComponent implements OnInit {
       this.form.value.fechaEstreno,
       this.form.value.cantidadPublico,
       this.form.value.imagen,
-      this.protagonista
+      this.actorSeleccionado
     );
 
     this.peliculasService.altaPelicula(pelicula)
       .then((): void => {
         this.showSuccessAlert('Película dada de alta exitosamente.').then(() => {
           this.form.reset();
-          this.protagonista = "";
+          this.nombreCompleto = "";
         });
       })
       .catch(error => {
         this.showErrorAlert('Error al dar de alta la película: ' + error).then(() => {
           this.form.reset();
-          this.protagonista = "";
+          this.nombreCompleto = "";
         });
       });
 

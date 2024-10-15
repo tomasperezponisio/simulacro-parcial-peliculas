@@ -1,8 +1,10 @@
+import {Timestamp} from "@angular/fire/firestore";
+
 export class Pelicula {
   // id: number;
   nombre: string;
   tipo: 'terror' | 'comedia' | 'amor' | 'otros';
-  fechaEstreno: Date
+  fechaEstreno: Timestamp
   cantidadPublico: number;
   imagen: string;
   protagonista: any;
@@ -11,7 +13,7 @@ export class Pelicula {
     // id: number,
     nombre: string,
     tipo: 'terror' | 'comedia' | 'amor' | 'otros',
-    fechaEstreno: Date,
+    fechaEstreno: Timestamp,
     cantidadPublico: number,
     imagen: string,
     protagonista: any

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Actor} from "../models/actor";
-import {addDoc, collection, CollectionReference, Firestore} from "@angular/fire/firestore";
+import {addDoc, collection, collectionData, CollectionReference, Firestore} from "@angular/fire/firestore";
 import {Pelicula} from "../models/pelicula";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,10 @@ export class PeliculasService {
     } catch (error) {
       throw error;
     }
+  }
+
+  getPeliculas(): Observable<Pelicula[]> {
+    return collectionData(this.peliculasCollection, { idField: 'id' }) as Observable<Pelicula[]>;
   }
 
 }
