@@ -12,7 +12,8 @@ import {Actor} from "../../models/actor";
 import {PeliculasService} from "../../services/peliculas.service";
 import {Pelicula} from "../../models/pelicula";
 import Swal from "sweetalert2";
-
+import {getDownloadURL, listAll, ref, Storage, uploadBytes} from '@angular/fire/storage'
+import {iterator} from "rxjs/internal/symbol/iterator";
 
 @Component({
   selector: 'app-alta-pelicula',
@@ -45,8 +46,8 @@ export class AltaPeliculaComponent implements OnInit {
   tipoOpciones = ['terror', 'comedia', 'amor', 'otros'];
 
   constructor(
-    private peliculasService: PeliculasService
-
+    private peliculasService: PeliculasService,
+    private storage: Storage
   ) {
   }
 
@@ -73,6 +74,8 @@ export class AltaPeliculaComponent implements OnInit {
         Validators.required
       ]),
     });
+
+    //this.traerImagenes();
   }
 
   get nombre() {
@@ -116,29 +119,47 @@ export class AltaPeliculaComponent implements OnInit {
 
     console.log('Alta pelicula');
 
+    const fileInput: HTMLInputElement | null = document.getElementById('imagen') as HTMLInputElement;
+    if (fileInput?.files && fileInput.files[0]) {
+      const file = fileInput.files[0];
+      const imgRef = ref(this.storage, `images/${file.name}`);
 
-    const pelicula = new Pelicula(
-      this.form.value.nombre,
-      this.form.value.tipo,
-      this.form.value.fechaEstreno,
-      this.form.value.cantidadPublico,
-      this.form.value.imagen,
-      this.actorSeleccionado
-    );
+      // subo la imagen y me traigo la url
+      uploadBytes(imgRef, file)
+        .then(async response => {
+          console.log('Image uploaded successfully:', response);
+          const downloadURL = await getDownloadURL(response.ref);
+          console.log('Image URL:', downloadURL);
 
-    this.peliculasService.altaPelicula(pelicula)
-      .then((): void => {
-        this.showSuccessAlert('Película dada de alta exitosamente.').then(() => {
-          this.form.reset();
-          this.nombreCompleto = "";
+          const pelicula = new Pelicula(
+            this.form.value.nombre,
+            this.form.value.tipo,
+            this.form.value.fechaEstreno,
+            this.form.value.cantidadPublico,
+            downloadURL,
+            this.actorSeleccionado
+          );
+
+          // Guardo la pelicula en Firestore
+          this.peliculasService.altaPelicula(pelicula)
+            .then((): void => {
+              this.showSuccessAlert('Película dada de alta exitosamente.').then(() => {
+                this.form.reset();
+                this.nombreCompleto = "";
+              });
+            })
+            .catch(error => {
+              this.showErrorAlert('Error al dar de alta la película: ' + error).then(() => {
+                this.form.reset();
+                this.nombreCompleto = "";
+              });
+            });
+        })
+        .catch(error => {
+          console.error('Error uploading image:', error);
+          this.showErrorAlert('Error al subir la imagen. Intenta de nuevo.');
         });
-      })
-      .catch(error => {
-        this.showErrorAlert('Error al dar de alta la película: ' + error).then(() => {
-          this.form.reset();
-          this.nombreCompleto = "";
-        });
-      });
+    }
 
   }
 
@@ -169,5 +190,33 @@ export class AltaPeliculaComponent implements OnInit {
       confirmButtonText: 'Cerrar'
     });
   }
+
+/*  subirImagen($event: any) {
+    const file = $event.target.files[0];
+    console.log(file);
+
+    const imgRef = ref(this.storage, `images/${file.name}`);
+
+    uploadBytes(imgRef, file)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => console.log(error));
+  }*/
+
+/*  traerImagenes() {
+    const imagesRef = ref(this.storage, 'images');
+
+    listAll(imagesRef)
+      .then(async response => {
+        //console.log(response);
+        for (const item of response.items) {
+          const url = await getDownloadURL(item);
+          //console.log(url);
+
+        }
+      })
+      .catch(error => console.log(error));
+  }*/
 
 }
