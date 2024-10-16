@@ -1,0 +1,19 @@
+.scrollable-table {
+  max-height: 400px; /* Change this value to whatever height you need */
+  overflow-y: auto;
+}
+
+.scrollable-table table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.scrollable-table th, .scrollable-table td {
+  text-align: left;
+  padding: 8px 12px;
+}
+
+.scrollable-table img {
+  width: auto;
+  height: 50px; /* Adjust this value as needed */
+}

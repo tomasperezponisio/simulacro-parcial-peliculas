@@ -1,4 +1,5 @@
 import {Timestamp} from "@angular/fire/firestore";
+import {Actor} from "./actor";
 
 export class Pelicula {
   // id: number;
@@ -7,7 +8,7 @@ export class Pelicula {
   fechaEstreno: Timestamp
   cantidadPublico: number;
   imagen: string;
-  protagonista: any;
+  protagonista: Actor;
 
   constructor(
     // id: number,
@@ -16,7 +17,7 @@ export class Pelicula {
     fechaEstreno: Timestamp,
     cantidadPublico: number,
     imagen: string,
-    protagonista: any
+    protagonista: Actor
   ) {
     // this.id = id;
     this.nombre = nombre;

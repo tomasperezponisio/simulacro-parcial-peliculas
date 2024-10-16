@@ -1,0 +1,18 @@
+<div *ngIf="countryDetails">
+  <h2>{{ countryDetails.name.common }}</h2>
+  <p><strong>Capital:</strong> {{ countryDetails.capital[0] }}</p>
+  <p><strong>Population:</strong> {{ countryDetails.population }}</p>
+  <p><strong>Region:</strong> {{ countryDetails.region }}</p>
+  <p><strong>Subregion:</strong> {{ countryDetails.subregion }}</p>
+  <img [src]="countryDetails.flags.svg" alt="Flag of {{ countryDetails.name.common }}" style="width: 150px;">
+</div>
+
+<div *ngIf="!pais">
+  <p>No actor seleccionado.</p>
+</div>
+
+<div *ngIf="pais">
+  <div *ngIf="errorMessage">
+    <p class="text-danger">{{ errorMessage }}</p>
+  </div>
+</div>

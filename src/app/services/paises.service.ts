@@ -17,7 +17,8 @@ interface Pais {
 })
 export class PaisesService {
 
-  private apiUrl = 'https://restcountries.com/v3.1/all';
+  private apiUrl: string = 'https://restcountries.com/v3.1/all';
+  private apiUrlbyName: string = 'https://restcountries.com/v3.1/name/';
 
   constructor(
     private http: HttpClient) {
@@ -26,6 +27,12 @@ export class PaisesService {
   traerPaises(): Observable<Pais[]> {
     return this.http.get<Pais[]>(this.apiUrl).pipe(
       map(paises => paises.sort((a, b) => a.name.common.localeCompare(b.name.common)))
+    );
+  }
+
+  traerPaisporNombre(nombre: string): Observable<any> {
+    return this.http.get<any[]>(`${this.apiUrlbyName}${nombre}`).pipe(
+      map(response => response[0])
     );
   }
 }

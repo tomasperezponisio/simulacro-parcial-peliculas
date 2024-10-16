@@ -1,0 +1,28 @@
+<div *ngIf="actorSeleccionado">
+  <table class="table table-striped">
+    <tr>
+      <td><strong>Nombre:</strong></td>
+      <td>{{ actorSeleccionado.nombre }}</td>
+    </tr>
+    <tr>
+      <td><strong>Apellido:</strong></td>
+      <td>{{ actorSeleccionado.apellido }}</td>
+    </tr>
+    <tr>
+      <td><strong>Documento:</strong></td>
+      <td>{{ actorSeleccionado.documento }}</td>
+    </tr>
+    <tr>
+      <td><strong>Edad:</strong></td>
+      <td>{{ actorSeleccionado.edad }}</td>
+    </tr>
+    <tr>
+      <td><strong>Pais:</strong></td>
+      <td>{{ actorSeleccionado.pais }}</td>
+    </tr>
+    <!-- Add more actor fields as needed -->
+  </table>
+</div>
+<div *ngIf="!actorSeleccionado">
+  <p>No actor seleccionado.</p>
+</div>

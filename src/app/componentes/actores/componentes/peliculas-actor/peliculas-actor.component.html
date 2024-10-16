@@ -1,0 +1,21 @@
+<div *ngIf="peliculas.length > 0">
+  <h3>Películas del Actor</h3>
+  <ul>
+    <li *ngFor="let pelicula of peliculas">
+      <h4>{{ pelicula.nombre }} ({{ pelicula.tipo }})</h4>
+      <p><strong>Fecha de Estreno:</strong> {{ pelicula.fechaEstreno.toDate() | date: 'dd/MM/yyyy' }}</p>
+      <p><strong>Cantidad de Público:</strong> {{ pelicula.cantidadPublico }}</p>
+      <img [src]="pelicula.imagen" alt="{{ pelicula.nombre }}" style="width: 200px; height: auto;">
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="!actorSeleccionado">
+  <p>No actor seleccionado.</p>
+</div>
+
+<div *ngIf="actorSeleccionado">
+  <div *ngIf="peliculas.length === 0">
+    <p>No hay películas para este actor.</p>
+  </div>
+</div>

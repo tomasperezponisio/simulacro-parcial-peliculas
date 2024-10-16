@@ -29,11 +29,11 @@ export class AltaActorComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       nombre: new FormControl("", [
-        Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚ]+$'),
+        Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚ\\s]+$'),
         Validators.required
       ]),
       apellido: new FormControl("", [
-        Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚ]+$'),
+        Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚ\\s]+$'),
         Validators.required
       ]),
       edad: new FormControl("", [
@@ -80,8 +80,8 @@ export class AltaActorComponent implements OnInit {
     const actor = new Actor(
       this.form.value.nombre,
       this.form.value.apellido,
-      this.form.value.edad,
       this.form.value.documento,
+      this.form.value.edad,
       this.nacionalidad
     );
 

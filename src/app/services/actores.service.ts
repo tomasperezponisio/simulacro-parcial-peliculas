@@ -7,7 +7,7 @@ import {
   CollectionReference,
 } from '@angular/fire/firestore';
 import {Actor} from "../models/actor";
-import { map, Observable} from "rxjs";
+import { Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'

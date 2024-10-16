@@ -38,7 +38,7 @@
               <label for="apellido" class="form-label">Apellido</label>
               <input type="text" class="form-control" id="apellido" placeholder="" formControlName="apellido">
 
-              <ng-container *ngIf="nombre?.hasError('pattern')">
+              <ng-container *ngIf="apellido?.hasError('pattern')">
                 <small class="text-danger">Sólo debe contener solo letras</small>
               </ng-container>
 
