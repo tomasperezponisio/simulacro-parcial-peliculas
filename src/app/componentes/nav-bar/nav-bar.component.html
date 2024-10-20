@@ -13,7 +13,7 @@
             <a class="nav-link" aria-current="page" routerLink="peliculas" routerLinkActive="active-route">Peliculas</a>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="auth.currentUser?.email">
             <a class="nav-link" aria-current="page" routerLink="altapelicula" routerLinkActive="active-route">Alta Pelicula</a>
           </li>
 
@@ -22,8 +22,20 @@
                routerLinkActive="active-route">Actores</a>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="auth.currentUser?.email">
             <a class="nav-link" aria-current="page" routerLink="altaactor" routerLinkActive="active-route">Alta Actor</a>
+          </li>
+
+          <li class="nav-item" *ngIf="!auth.currentUser?.email">
+            <a class="nav-link" aria-current="page" routerLink="login" routerLinkActive="active-route">Login</a>
+          </li>
+
+          <li class="nav-item" *ngIf="!auth.currentUser?.email">
+            <a class="nav-link" aria-current="page" routerLink="register" routerLinkActive="active-route">Register</a>
+          </li>
+
+          <li class="nav-item" *ngIf="auth.currentUser?.email">
+            <a class="nav-link" (click)="closeSession()" >Cerrar Sesión</a>
           </li>
 
         </ul>

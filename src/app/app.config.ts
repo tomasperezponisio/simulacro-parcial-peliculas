@@ -9,6 +9,7 @@ import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {getDatabase, provideDatabase} from "@angular/fire/database";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {getStorage, provideStorage} from "@angular/fire/storage";
+import {provideAuth, getAuth} from "@angular/fire/auth";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,5 +20,6 @@ export const appConfig: ApplicationConfig = {
     provideFirestore(() => getFirestore()),
     provideDatabase(() => getDatabase()), provideAnimationsAsync(),
     provideStorage(()=>getStorage()),
+    provideAuth(() => getAuth()),
   ]
 };
