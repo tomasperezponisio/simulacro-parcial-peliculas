@@ -40,4 +40,8 @@ export const routes: Routes = [
     path: 'error', loadComponent: () => import('./componentes/error-page/error-page.component')
       .then(c => c.ErrorPageComponent)
   },
+  {
+    path: '**', loadComponent: () => import('./componentes/error-page/error-page.component')
+      .then(c => c.ErrorPageComponent)
+  },
 ];
